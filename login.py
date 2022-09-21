@@ -5,36 +5,36 @@ import mysql.connector
 def login_or_register():
     for i in range(len(data)):
         if login in data[i]:
-            passworld = input('Passworld - ')
-            sign(passworld)
+            password = input('Passworld - ')
+            sign(password)
             break
     
     return
     create = input('Login not found. Create a new account? (Y/N) ')
     if create == 'Y':
-        passworld = input('Create passworld - ')
-        register(passworld)    
+        password = input('Create passworld - ')
+        register(password)    
     elif create == 'N':
         print('Bye!')
     else:
         print('Invalid input.')
 
 def sign(x):
-    y = ''
+    result = ''
 
     for i in range(len(data)):
         if x in data[i]:
-            y = 'You are logged in.'
+            result = 'You are logged in.'
             break
     
-    if y  == '':
+    if result  == '':
         print('Invalid password.')
         login_or_register()
     else:
-        print(y)
+        print(result)
 
-def register(x):
-    cursor.execute('INSERT INTO logins (login, passworld) VALUES ({}, {})'.format(login, x))
+def register(password):
+    cursor.execute('INSERT INTO logins (login, passworld) VALUES ({}, {})'.format(login, password))
     con.commit()
     print('Successful registration!')
     
